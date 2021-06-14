@@ -7,6 +7,8 @@ import Cabecalho from './components/Cabecalho'
 
 import { buscaSobreRacas, buscaImagemPorRaca, buscaTodasRacas } from './api'
 
+import StatusContext from './context/status'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -61,7 +63,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <Cabecalho status={this.state.status} />
+        <StatusContext.Provider value={this.state.status}>
+           <Cabecalho />
+        </StatusContext.Provider>       
         <Raca raca={this.state.racaSelecionada} />
         <ListaRacas racas={this.state.racas} selecionaRaca={this.selecionaRaca} />
       </div>
